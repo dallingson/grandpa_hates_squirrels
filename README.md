@@ -15,12 +15,12 @@ Armed with only a cane (and a bad temper), Grandpa must jump, swing, and survive
 
 ### 👴 Simple Animations
 <p align="center">
-  <img src="grandpa_hates_squirrels.gif" alt="Grandpa Animations" width="200"/>
+  <img src="grandpa_hates_squirrels.gif" alt="Grandpa Animations" width="500"/>
 </p>
 
 ### 👴 Squirrel Interaction
 <p align="center">
-  <img src="grandpa_hates_squirrels_2.gif" alt="Grandpa picks up cane and hits squirrels" width="200"/>
+  <img src="grandpa_hates_squirrels_2.gif" alt="Grandpa picks up cane and hits squirrels" width="500"/>
 </p>
 
 
