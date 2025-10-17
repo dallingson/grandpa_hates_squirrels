@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cksdx7a7nk0k7"]
+
+[ext_resource type="Script" uid="uid://jn7i7r66mhcb" path="res://scenes/items/cane.gd" id="1_3o4ys"]
+[ext_resource type="Texture2D" uid="uid://2bmsjhoi34ty" path="res://scenes/items/cane.png" id="1_58bl6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ft0vu"]
+size = Vector2(25, 56)
+
+[node name="Cane" type="RigidBody2D" groups=["items"]]
+position = Vector2(24, 7)
+script = ExtResource("1_3o4ys")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(-25.374998, -31.625002)
+scale = Vector2(0.06323243, 0.06323243)
+texture = ExtResource("1_58bl6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-23, -33)
+shape = SubResource("RectangleShape2D_ft0vu")

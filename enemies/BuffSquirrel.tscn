@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://deby63gr25bja"]
+
+[ext_resource type="Script" uid="uid://dgextai16mxvm" path="res://enemies/buff_squirrel.gd" id="1_buff"]
+[ext_resource type="Texture2D" uid="uid://bfkldy516k1v5" path="res://enemies/buff_squirrel.png" id="2_buff"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_buff"]
+size = Vector2(53, 50)
+
+[node name="BuffSquirrel" type="CharacterBody2D" groups=["enemies"]]
+script = ExtResource("1_buff")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -3)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("2_buff")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -3)
+shape = SubResource("RectangleShape2D_buff")

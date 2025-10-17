@@ -1,0 +1,99 @@
+[gd_scene load_steps=13 format=3 uid="uid://cqultbhrmf6ri"]
+
+[ext_resource type="PackedScene" uid="uid://pol4jcakj8nf" path="res://scenes/player/player.tscn" id="1_nnsk1"]
+[ext_resource type="Texture2D" uid="uid://ge8yqpkpyikf" path="res://assets/sky.png" id="2_i7141"]
+[ext_resource type="Texture2D" uid="uid://bqrsfyj5hli8f" path="res://assets/ground.png" id="2_qfnet"]
+[ext_resource type="PackedScene" uid="uid://cksdx7a7nk0k7" path="res://scenes/items/Cane.tscn" id="2_rwgxs"]
+[ext_resource type="PackedScene" uid="uid://cvtgrkk8ogjlv" path="res://enemies/Squirrel.tscn" id="3_4wyf3"]
+[ext_resource type="PackedScene" uid="uid://deby63gr25bja" path="res://enemies/BuffSquirrel.tscn" id="4_k0juu"]
+[ext_resource type="Texture2D" uid="uid://bh0yicwmd0v01" path="res://assets/fence.png" id="5_71j4m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rwgxs"]
+size = Vector2(88.5, 168)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4wyf3"]
+size = Vector2(92.25, 171)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nnsk1"]
+size = Vector2(23820.084, 1016.353)
+
+[sub_resource type="QuadMesh" id="QuadMesh_4wyf3"]
+size = Vector2(100, 1000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k0juu"]
+size = Vector2(703, 1005)
+
+[node name="World" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(648, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_repeat = 2
+position = Vector2(-2, 313)
+scale = Vector2(0.2647705, 0.2647705)
+texture = ExtResource("5_71j4m")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 12415, 1016)
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_repeat = 2
+position = Vector2(1644, 51.00341)
+scale = Vector2(0.2647705, 0.25787738)
+texture = ExtResource("2_i7141")
+region_enabled = true
+region_rect = Rect2(0, -1524, 12415, 2032)
+
+[node name="Player" parent="." instance=ExtResource("1_nnsk1")]
+position = Vector2(103, 562)
+
+[node name="PickupArea2" type="Area2D" parent="Player"]
+
+[node name="PickupShape2D" type="CollisionShape2D" parent="Player/PickupArea2"]
+position = Vector2(-1, -83)
+shape = SubResource("RectangleShape2D_rwgxs")
+
+[node name="AttackArea2" type="Area2D" parent="Player"]
+
+[node name="AttackShape" type="CollisionShape2D" parent="Player/AttackArea2"]
+position = Vector2(60.875, -80)
+shape = SubResource("RectangleShape2D_4wyf3")
+
+[node name="Ground" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(2141, 680)
+scale = Vector2(-0.22753906, 0.22753906)
+texture = ExtResource("2_qfnet")
+region_enabled = true
+region_rect = Rect2(0, 0, 25206, 1024)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Ground"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/StaticBody2D"]
+position = Vector2(-659.2285, -4.3952637)
+shape = SubResource("RectangleShape2D_nnsk1")
+
+[node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2(-196, 421)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Wall"]
+modulate = Color(0, 0.63093334, 0.014735518, 1)
+position = Vector2(-167.5, -129)
+scale = Vector2(7.27, 1)
+mesh = SubResource("QuadMesh_4wyf3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(-161, -132)
+shape = SubResource("RectangleShape2D_k0juu")
+
+[node name="Cane" parent="." instance=ExtResource("2_rwgxs")]
+position = Vector2(1397, 566)
+
+[node name="BuffSquirrel" parent="." instance=ExtResource("4_k0juu")]
+position = Vector2(4197, 539)
+
+[node name="Squirrel" parent="." instance=ExtResource("3_4wyf3")]
+position = Vector2(2983, 546)

@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=3 uid="uid://pol4jcakj8nf"]
+
+[ext_resource type="Script" uid="uid://ug2wf0yrhaqy" path="res://scenes/player/player.gd" id="1_dovo2"]
+[ext_resource type="Texture2D" uid="uid://bq44wysy6s3m8" path="res://scenes/player/grandpa_idle.png" id="2_75vfm"]
+[ext_resource type="Texture2D" uid="uid://cadeu3d8y4psd" path="res://scenes/player/grandpa_run_1.png" id="2_gmlin"]
+[ext_resource type="Texture2D" uid="uid://ot7gb5b7pucg" path="res://scenes/player/grandpa_run_2.png" id="3_lvxji"]
+[ext_resource type="Texture2D" uid="uid://d1bf678cccp0e" path="res://scenes/player/grandpa_run_3.png" id="4_lvxji"]
+[ext_resource type="Texture2D" uid="uid://dcrkk634vg40g" path="res://scenes/player/grandpa_run_4.png" id="5_p47bc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p47bc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_75vfm")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gmlin")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lvxji")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_lvxji")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_p47bc")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
+size = Vector2(40.625, 84.625)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pickup"]
+radius = 49.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_attack"]
+size = Vector2(74.5, 51)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_dovo2")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-2, -48)
+zoom = Vector2(2, 2)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-4.9999924, -48.000004)
+scale = Vector2(0.43287545, 0.5321401)
+sprite_frames = SubResource("SpriteFrames_p47bc")
+animation = &"run"
+frame_progress = 0.535813
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -48)
+shape = SubResource("RectangleShape2D_g2els")
+
+[node name="PickupArea" type="Area2D" parent="."]
+
+[node name="PickupCollision" type="CollisionShape2D" parent="PickupArea"]
+position = Vector2(-2, -48)
+shape = SubResource("CircleShape2D_pickup")
+
+[node name="AttackArea" type="Area2D" parent="."]
+monitoring = false
+
+[node name="AttackCollision" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(56.75, -39)
+shape = SubResource("RectangleShape2D_attack")
+
+[connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]
+[connection signal="body_exited" from="PickupArea" to="." method="_on_pickup_area_body_exited"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
